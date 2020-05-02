@@ -13,7 +13,8 @@ READ: How to Install Oracle JAVA 8 on CentOS 7 / RHEL 7
 
 For this post, I am using OpenJDK.
 ```sh
-yum install -y java-1.8.0 wget
+yum install -y java-1.8.0 wget vim
+yum install java-11-openjdk-devel wget vim
 ```
 You can also verify it, by issuing the following command.
 ```sh
