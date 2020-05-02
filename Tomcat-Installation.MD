@@ -3,15 +3,10 @@
 
 Apache Tomcat is an open source web server and servlet container developed by the Apache Software Foundation (ASF). Tomcat implements the Java Servlet and the JavaServer Pages (JSP) specifications from Oracle and provides a “pure Java” HTTP web server environment for running the Java codes.
 
-Apache Tomcat includes tools for configuration and management, but it can also be configured by editing XML configuration files.
-
 Here is the step by step guide to install Apache Tomcat 9.0 / 8.5 on RHEL 7 / CentOS 7.
 Prerequisites
 
 Open a terminal and switch to root user.
-```sh
-su -
-```
 Tomcat requires having java installed on your machine. You can install either Oracle JDK or OpenJDK.
 
 READ: How to Install Oracle JAVA 8 on CentOS 7 / RHEL 7
