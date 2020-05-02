@@ -1,4 +1,4 @@
- #How To Install Apache Tomcat 9.0 / 8.5 on CentOS 7 / RHEL 7
+ #                           How To Install Apache Tomcat 9.0 / 8.5 on CentOS 7 / RHEL 7
 
 
 Apache Tomcat is an open source web server and servlet container developed by the Apache Software Foundation (ASF). Tomcat implements the Java Servlet and the JavaServer Pages (JSP) specifications from Oracle and provides a “pure Java” HTTP web server environment for running the Java codes.
@@ -151,26 +151,27 @@ Check the status of Tomcat, run:
 systemctl status tomcat
 ```
 Enable the auto start of Tomcat service on system start, run:
-
+```sh
 systemctl enable tomcat
-
+```
 Verify Apache Tomcat
 
 By default, Tomcat runs on port no 8080. Use netstat command to check whether the service is listening on port 8080 or not.
-
+```sh
 netstat -antup | grep 8080
-
+```
+```sh
 Output:
 
 tcp6       0      0 :::8080                 :::*                    LISTEN      2428/java
-
+```
 Firewall
 
 You may need to allow port 8080 in the firewall so that we can access Tomcat from external networks.
-
+```sh
 firewall-cmd --permanent --add-port=8080/tcp
 firewall-cmd --reload
-
+```
 Configure Apache Tomcat Web UI
 
 Tomcat can be managed through the Web Manager. With Web Manager, we can
@@ -185,36 +186,36 @@ Also, Tomcat has Host Manager to manage its virtual hosts.
 Both The Web and Host Manager is password protected, requires username and password to access. Only the user with the “manager-gui” and “admin-gui” role is allowed to access.
 
 These users and roles are defined in tomcat-users.xml.
-
+```sh
 vi /opt/tomcat/conf/tomcat-users.xml
-
+```
 Place the following two lines just above the last line.
-
+```sh
 <role rolename="admin-gui,manager-gui"/>
 <user username="admin" password="tomcat" roles="manager-gui,admin-gui"/>
-
+```
 For security reason, Web and Host Manager is accessible only from localhost, i.e., from the server itself.
 
 If you want to access Web and Host manager from remote systems, then you need to add your source network in allow list. To do that, edit the below two files.
-
+```sh
 vi /opt/tomcat/webapps/manager/META-INF/context.xml
 
 vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
-
+```
 Update the below line on both files with source IP from which you’re accessing the Web and Host Manager. .* will allow everyone to have access to Web and Host manager.
-
+```sh
 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|.*" />
-
+```
 OR
 
 You can also allow part of your network only. For example: To allow 10.20.0.0/24 network only, you can use the below values.
-
+```sh
 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|10.20.*" />
-
+```
 Restart the Tomcat service.
-
+```sh
 systemctl restart tomcat
-
+```
 Access Tomcat
 
 Open the web browser and point to
